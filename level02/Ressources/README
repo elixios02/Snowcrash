@@ -1,0 +1,39 @@
+On fait un : ls
+On observe un fichier : level02.pcap
+
+scp -P 4242 level02@10.12.1.139:/home/user/level02/level02.pcap .
+
+on telecharge wireshark et on met level02.pcap dans le logiciel (penser a faire un chmod 777 level02.pcap)
+
+On observe a la 43eme ligne le mot password 
+On recupere donc chaque data des packets suivant 
+exemple : 
+45: f
+47: t
+49: _
+51: w
+53: a
+55: n
+57: d
+59: r
+61: 7f
+63: 7f
+65: 7f
+67: N
+69: D
+71: R
+73: e
+75: l
+77: 7f
+79: L
+81: 0
+83: L
+85: 0d
+	  
+ATTENTION : 7F => Del (supprimer un char) 
+	    0d => Carriage return (Enter)
+
+A la fin on obtient ft_waNDReL0L qui est le mot de passe pour ce connecter a flag02
+
+getflag
+Check flag.Here is your token : kooda2puivaav1idi4f57q8iq

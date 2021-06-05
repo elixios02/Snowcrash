@@ -1,0 +1,33 @@
+cat /etc/passwd
+On observe que le mot de passe de flag01 n'est pas cacher
+flag01:42hDRfypTqqnw:3001:3001::/home/flag/flag01:/bin/bash
+
+on essaye de ce connecter a flag01 avec 42hDRfypTqqnw et ca ne marche pas
+
+On conserve donc cette chaine de charactere dans un fichier passwd via : 
+echo 42hDRfypTqqnw > /tmp/passwd
+
+on copie passwd sur notre machine avec (A lancer sur notre machine, pas sur la VM):
+scp -P 4242 level01@10.12.1.139:/tmp/passwd .
+
+telecharger john sur notre machine et lancer :
+john --show passwd
+
+Warning: detected hash type "descrypt", but the string is also recognized as "descrypt-opencl"
+Use the "--format=descrypt-opencl" option to force loading these as that type instead
+Using default input encoding: UTF-8
+Loaded 1 password hash (descrypt, traditional crypt(3) [DES 128/128 SSE2])
+Proceeding with single, rules:Single
+Press 'q' or Ctrl-C to abort, almost any other key for status
+Almost done: Processing the remaining buffered candidate passwords, if any.
+Warning: Only 9 candidates buffered for the current salt, minimum 128 needed for performance.
+Proceeding with wordlist:/Users/naminei/.brew/Cellar/john-jumbo/1.9.0/share/john/password.lst, rules:Wordlist
+abcdefg          (flag01)
+1g 0:00:00:00 DONE 2/3 (2020-05-18 10:44) 100.0g/s 142600p/s 142600c/s 142600C/s raquel..bigman
+
+abcdefg
+
+On ce connecte a flag01 avec : abcdefg
+
+getflag
+Check flag.Here is your token : f2av5il02puano7naaf6adaaf

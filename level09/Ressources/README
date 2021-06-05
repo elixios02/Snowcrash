@@ -1,0 +1,33 @@
+On lance le programme
+./level09
+You need to provied only one arg.
+
+On tente donc de le lancer avec le token : 
+./level09 token
+tpmhr
+
+Si on regarde ce que contient token 
+cat token
+f4kmm6p|=p�n��DB�Du��
+
+Rien de vraiment concluant
+On tente donc de lancer le programme avec une chaine de charactere 
+./level09 aaaaa
+abcde
+
+On comprend alors que level09 hash la string qu'on lui envoie
+On va donc essayer de comprendre comment ce hash fonctionne
+Apres moulte tentatives infructueuse on comprend enfin ce qu'il ce passe
+ne sachant pas comment l'expliquer avec des mots je vais faire un exemple : 
+aaaaa => str
+01234 => index de la str
+abcde => resultat
+ascii du char "a" : 97
+l'operation est : code ascii + index dans la string = nouveau charactere
+Nous allons donc creer un petit script afin de decrypter token
+
+python /tmp/decrypt.py token
+f3iji1ju5yuevaus41q1afiuq
+su flag09
+getflag
+s5cAJpM8ev6XHw998pRWG728z
